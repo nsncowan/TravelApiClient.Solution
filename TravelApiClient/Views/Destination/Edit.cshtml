@@ -1,0 +1,26 @@
+@{
+  ViewData["Title"] = $"Edit {Model.City}, {Model.Country}";
+}
+
+@model TravelApiClient.Models.Destination
+
+<h4>Edit @Model.City, @Model.Country</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.DestinationId)
+  @Html.LabelFor(model => model.City)
+  @Html.TextBoxFor(model => model.City, new { @Value = Model.City})
+  <br>
+  @Html.LabelFor(model => model.Country)
+  @Html.TextBoxFor(model => model.Country, new { @Value = Model.Country})
+  <br>
+  @Html.LabelFor(model => model.Rating)
+  @Html.TextBoxFor(model => model.Rating, new { type = "number", min = "0", max = "5", step="1", @Value = Model.Rating })
+  <br>
+  <br>
+  <input type="submit" value="Edit destination" class="btn btn-primary"/>
+}
+
+<br>
+<p>@Html.ActionLink("Back to details", "Details", new {id = @Model.DestinationId})</p>

@@ -1,0 +1,26 @@
+@{
+  ViewData["Title"] = "Add a Review";
+}
+
+@model TravelApiClient.Models.Review
+
+<h4>Add a new Review</h4>
+
+@using (Html.BeginForm())
+{
+  <p>@ViewBag.DestId</p> 
+  @Html.HiddenFor(model => model.DestinationId, htmlAttributes: new { @Value = @ViewBag.DestId})
+
+
+  @Html.LabelFor(model => model.Author)
+  @Html.TextBoxFor(model => model.Author)
+  <br>
+  @Html.LabelFor(model => model.Text)
+  @Html.TextBoxFor(model => model.Text)
+  <br>
+  <br>
+  <input type="submit" value="Add new review" class="btn btn-primary"/>
+}
+
+<br>
+<p>@Html.ActionLink("Back to all destinations", "Index", "Destination")</p>

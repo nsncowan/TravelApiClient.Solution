@@ -1,0 +1,30 @@
+@{
+  ViewData["Title"] = $"Details for {Model.City}, {Model.Country}";
+}
+
+<h1>All about @Model.City, @Model.Country</h1>
+
+<p>Rating: @Model.Rating</p>
+
+@if (@Model.Reviews.Count == 0)
+{
+  <p>This destination does not contain any reviews</p>
+}
+else
+{
+  <h4>Reviews for this destination:</h4>
+  <ul>
+  @foreach (Review review in Model.Reviews)
+    {
+      <li>
+      @review.Author
+      <br>
+      @review.Text
+      </li>
+    }
+  </ul>
+}
+<p>@Html.ActionLink("Add Review", "Create", "Review", new { id = @Model.DestinationId })</p>
+<p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.DestinationId })</p>
+<p>@Html.ActionLink("Delete destination", "Delete", new { id = @Model.DestinationId })</p>
+<p>@Html.ActionLink("Return to all the destinations", "Index")</p>
