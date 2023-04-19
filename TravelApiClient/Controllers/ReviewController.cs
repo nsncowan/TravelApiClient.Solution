@@ -5,17 +5,22 @@ namespace TravelApiClient.Controllers;
 
 public class ReviewController : Controller
 {
-  public ActionResult Create(int destinationId)
+  // GET: /Create/5
+  public ActionResult Create(int id)
   {
-    ViewBag.DestId = destinationId.ToString();
+    ViewBag.TestString = "Test";
+    ViewBag.DestId = id;
     return View();
   }
 
+    // Post: /Create/5
   [HttpPost]
   public ActionResult Create(Review review)
   {
+    // review.DestinationId = destinationId;
     Review.Post(review);
-    return RedirectToAction("Index", "Destination");
+    ModelState.Clear();
+    return RedirectToAction("Details", "Destination", new { id = @review.DestinationId});
   }
 
   public ActionResult Edit(int id)
@@ -25,10 +30,10 @@ public class ReviewController : Controller
   }
 
   [HttpPost]
-  public ActionResult Edit(Review review, int destinationId)
+  public ActionResult Edit(Review review)
   {
     Review.Put(review);
-    return RedirectToAction("Details", "Destination", new { id = destinationId });
+    return RedirectToAction("Details", "Destination", new { id = review.DestinationId});
   }
 
   public ActionResult Delete(int id)
@@ -40,7 +45,9 @@ public class ReviewController : Controller
   [HttpPost, ActionName("Delete")]
   public ActionResult DeleteConfirmed(int id)
   {
+    int destId = Review.GetDetails(id).DestinationId;
     Review.Delete(id);
-    return RedirectToAction("Index");
+    ModelState.Clear();
+    return RedirectToAction("Details", "Destination", new { id = destId });
   }
 }

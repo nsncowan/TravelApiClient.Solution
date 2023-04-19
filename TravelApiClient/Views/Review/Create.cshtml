@@ -4,19 +4,20 @@
 
 @model TravelApiClient.Models.Review
 
-<h4>Add a new Review</h4>
+<h4>Add a new Review for Destination ID: @ViewBag.DestId </h4>
 
 @using (Html.BeginForm())
 {
-  <p>@ViewBag.DestId</p> 
-  @Html.HiddenFor(model => model.DestinationId, htmlAttributes: new { @Value = @ViewBag.DestId})
-
+  <input type="hidden" name="DestinationId" id="DestinationId" value="@ViewBag.DestId"/>
 
   @Html.LabelFor(model => model.Author)
   @Html.TextBoxFor(model => model.Author)
   <br>
   @Html.LabelFor(model => model.Text)
   @Html.TextBoxFor(model => model.Text)
+  <br>
+  @Html.LabelFor(model => model.Rating)
+  @Html.TextBoxFor(model => model.Rating, new { type = "number", min = "0", max = "5", step="1" })
   <br>
   <br>
   <input type="submit" value="Add new review" class="btn btn-primary"/>

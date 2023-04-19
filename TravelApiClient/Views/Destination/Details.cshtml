@@ -20,6 +20,8 @@ else
       @review.Author
       <br>
       @review.Text
+      @Html.ActionLink("Edit", "Edit", "Review", new { id = review.ReviewId }, new {@class = "btn btn-warning btn-sm"})
+      @Html.ActionLink("X", "Delete", "Review", new { id = review.ReviewId }, new {@class = "btn btn-danger btn-sm"})
       </li>
     }
   </ul>

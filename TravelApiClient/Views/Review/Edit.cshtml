@@ -9,11 +9,15 @@
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.ReviewId)
+  @Html.HiddenFor(model => model.DestinationId)
   @Html.LabelFor(model => model.Author)
   @Html.TextBoxFor(model => model.Author, new { @Value = Model.Author})
   <br>
   @Html.LabelFor(model => model.Text)
   @Html.TextBoxFor(model => model.Text, new { @Value = Model.Text})
+  <br>
+  @Html.LabelFor(model => model.Rating)
+  @Html.TextBoxFor(model => model.Rating, new { type = "number", min = "0", max = "5", step="1", @Value=Model.Rating})
   <br>
   <br>
   <input type="submit" value="Edit review" class="btn btn-primary"/>

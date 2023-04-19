@@ -8,6 +8,7 @@ public class DestinationController : Controller
   public IActionResult Index()
   {
     List<Destination> destinations = Destination.GetDestinations();
+    ModelState.Clear();
     return View(destinations);
   }
 
@@ -26,6 +27,7 @@ public class DestinationController : Controller
   public ActionResult Create(Destination destination)
   {
     Destination.Post(destination);
+    ModelState.Clear();
     return RedirectToAction("Index");
   }
 
@@ -39,6 +41,7 @@ public class DestinationController : Controller
   public ActionResult Edit(Destination destination)
   {
     Destination.Put(destination);
+    ModelState.Clear();
     return RedirectToAction("Details", new { id = destination.DestinationId });
   }
 
@@ -52,6 +55,7 @@ public class DestinationController : Controller
   public ActionResult DeleteConfirmed(int id)
   {
     Destination.Delete(id);
+    ModelState.Clear();
     return RedirectToAction("Index");
   }
 }
